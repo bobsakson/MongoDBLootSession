@@ -1,0 +1,13 @@
+﻿@model MongoDBLootSession.Models.RecipeListViewModel
+@{
+    ViewBag.Title = "Recipe List";
+}
+
+<h2>Recipe List</h2>
+
+<ul>
+    @foreach (var recipe in Model.Recipes)
+    {
+        <li>@Html.ActionLink(recipe.Name, "Details", new { id = recipe.Id })</li>
+    }
+</ul>

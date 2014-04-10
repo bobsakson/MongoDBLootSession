@@ -1,0 +1,63 @@
+﻿@model MongoDBLootSession.Models.RecipeDetailViewModel
+@{
+    ViewBag.Title = "Recipe";
+}
+
+<h2>Recipe</h2>
+
+@using(Html.BeginForm("Edit", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    
+    <div>
+        @Html.DisplayFor(x => x.Name)
+        @Html.HiddenFor(x => x.Name)
+    </div>
+
+    <div>
+        @Html.DisplayFor(x => x.DateAdded)
+        @Html.HiddenFor(x => x.DateAdded)
+    </div>
+
+    <div>
+        @Html.DisplayFor(x => x.ServingSize)
+        @Html.HiddenFor(x => x.ServingSize)
+    </div>
+
+    <div>
+        <span>Tags:</span>
+        <ul>
+            @foreach(var tag in Model.Tags)
+            {
+                <li>@tag</li>
+            }
+        </ul>
+        @Html.HiddenFor(x => x.Tags)
+    </div>
+
+    <div>
+        <span>Steps:</span>
+        <ul>
+            @foreach (var step in Model.Steps)
+            {
+                <li>@step</li>
+            }
+        </ul>
+        @Html.HiddenFor(x => x.Steps)
+    </div>
+
+    if(Model.Image != null)
+    {
+       <div>
+           <img src="data:image;base64,@Model.Image" />
+       </div> 
+    }
+    else
+    { 
+        <div>
+            @Html.TextBoxFor(x => x.Picture, new { type = "file", name = "Picture" })
+        </div>
+    
+        <div><input type="submit" value="Submit" /></div>
+    }
+}
