@@ -55,10 +55,10 @@ db.Recipes.find({ "tags.0": "beef", "tags.2": "French", servingSize: { $gt: 10 }
 db.Recipes.find({ $or: [{ "tags.0": "beef" }, { "tags.2": "French" }], servingSize: { $gt: 10 } }).count()
 
 // Projection, _id is always returned unless intentionally left off
-db.Recipes.find({ 'steps.step2': 'broil' }, { name: 1, _id: 0 })
+db.Recipes.find({ 'steps.2': 'broil' }, { name: 1, _id: 0 })
 
 // Show the query plan without an index
-db.Recipes.find({ 'steps.step2': 'broil' }).explain()
+db.Recipes.find({ 'steps.2': 'broil' }).explain()
 
 // Show the query plan with an index
 db.Recipes.find({ dateAdded: { $gt: ISODate("2012-04-01T12:03:57.231Z") } }).explain()
